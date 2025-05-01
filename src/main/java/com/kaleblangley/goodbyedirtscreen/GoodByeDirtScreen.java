@@ -1,4 +1,4 @@
-package com.kaleblangley.goodbye_dirt_screen;
+package com.kaleblangley.goodbyedirtscreen;
 
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
