@@ -1,11 +1,15 @@
 package com.kaleblangley.goodbyedirtscreen.mixin;
 
+import com.kaleblangley.goodbyedirtscreen.util.BackGroundUtil;
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSelectionList;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AbstractSelectionList.class)
 public class AbstractSelectionListMixin {
@@ -21,5 +25,10 @@ public class AbstractSelectionListMixin {
     @ModifyExpressionValue(method = "render", at = @At(value = "MIXINEXTRAS:EXPRESSION"))
     public boolean cancelRenderBackGround(boolean original){
         return false;
+    }
+
+    @Inject(method = "renderBackground", at = @At("HEAD"))
+    public void renderBackGround(GuiGraphics guiGraphics, CallbackInfo ci){
+//        BackGroundUtil.applyPanorama();
     }
 }

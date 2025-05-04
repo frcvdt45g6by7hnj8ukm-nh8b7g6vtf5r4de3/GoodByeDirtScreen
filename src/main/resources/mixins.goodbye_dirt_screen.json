@@ -10,6 +10,7 @@
     "ExperimentsScreenMixin",
     "ScreenMixin",
     "ScrollPanelMixin",
+    "SeWM",
     "TabNavigationBarMixin",
     "TitleScreenMixin"
   ],
@@ -18,5 +19,6 @@
   },
   "refmap": "mixins.goodbye_dirt_screen.refmap.json",
   "mixinextras": {
-    "minVersion": "0.5.0-rc.2"}
+    "minVersion": "0.5.0-rc.2"
+  }
 }

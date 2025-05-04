@@ -28,7 +28,7 @@ public class EffectUtil {
 
     public static @NotNull List<AbstractUniform> safeGetUniforms(PostChain postChain, String name) {
         List<PostPass> passes = postChain.passes;
-        List<AbstractUniform> uniforms = List.of();
+        List<AbstractUniform> uniforms = new ArrayList<>(List.of());
         for (PostPass pass : passes) {
             uniforms.add(pass.getEffect().safeGetUniform(name));
         }

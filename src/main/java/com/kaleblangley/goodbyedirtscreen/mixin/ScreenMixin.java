@@ -28,17 +28,10 @@ public class ScreenMixin {
     @Nullable
     protected Minecraft minecraft;
 
-    @Shadow
-    public int width;
-
-    @Shadow
-    public int height;
-
     @Inject(method = "render", at = @At(value = "HEAD"))
     public void panoramaBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
         if (!Arrays.asList(panoramaSpecialScreen).contains(currentScreen.getClass())) return;
-
-        BackGroundUtil.panoramaUtil(currentScreen, this.minecraft.getPartialTick(), this.minecraft.level, guiGraphics, currentScreen.width, currentScreen.height);
+//        BackGroundUtil.applyPanorama(currentScreen, this.minecraft.getPartialTick(), this.minecraft.level, guiGraphics, currentScreen.width, currentScreen.height);
     }
 
     @WrapOperation(method = "renderDirtBackground", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blit(Lnet/minecraft/resources/ResourceLocation;IIIFFIIII)V"))

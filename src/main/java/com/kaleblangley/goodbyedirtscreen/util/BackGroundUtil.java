@@ -20,7 +20,7 @@ public class BackGroundUtil {
     public static final Class<?>[] panoramaExcludeScreen = {RealmsNotificationsScreen.class};
     private static final PanoramaRenderer panoramaRenderer = new PanoramaRenderer(new CubeMap(new ResourceLocation("textures/gui/title/background/panorama")));
 
-    public static void panoramaUtil(Screen screen, float partialTick, ClientLevel level, GuiGraphics guiGraphics, int width, int height){
+    public static void applyPanorama(Screen screen, float partialTick, ClientLevel level, GuiGraphics guiGraphics, int width, int height){
         if (Arrays.asList(BackGroundUtil.panoramaExcludeScreen).contains(screen.getClass())) return;
         if (level == null){
             panoramaRenderer.render(partialTick, 1.0f);
@@ -40,7 +40,7 @@ public class BackGroundUtil {
 
     public static void renderMenuBackground(GuiGraphics guiGraphics, Screen screen) {
         RenderSystem.enableBlend();
-        guiGraphics.blit(new ResourceLocation("textures/gui/menu_background.png"), 0, 0, 0, 0, 0, screen.width, screen.height, 32, 32);
+        guiGraphics.blit(ResourceUtil.MENU_BACKGROUND, 0, 0, 0, 0, 0, screen.width, screen.height, 32, 32);
         RenderSystem.disableBlend();
     }
 
