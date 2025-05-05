@@ -6,6 +6,7 @@
   "mixins": [
   ],
   "client": [
+    "AbstractSelectionListMixin"
   ],
   "injectors": {
     "defaultRequire": 1
