@@ -9,24 +9,24 @@ import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.CubeMap;
 import net.minecraft.client.renderer.PanoramaRenderer;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.Arrays;
 
 import static com.kaleblangley.goodbyedirtscreen.util.MinecraftUtil.getMainRenderTarget;
+import static com.kaleblangley.goodbyedirtscreen.util.ResourceUtil.PANORAMA;
 
 
 public class BackGroundUtil {
-    public static final Class<?>[] panoramaExcludeScreen = {RealmsNotificationsScreen.class};
-    private static final PanoramaRenderer panoramaRenderer = new PanoramaRenderer(new CubeMap(new ResourceLocation("textures/gui/title/background/panorama")));
+    public static final Class<?>[] panoramaExcludeScreen = {};
+    private static final PanoramaRenderer panoramaRenderer = new PanoramaRenderer(new CubeMap(PANORAMA));
 
-    public static void applyPanorama(Screen screen, float partialTick, ClientLevel level, GuiGraphics guiGraphics, int width, int height){
+    public synchronized static void applyPanorama(Screen screen, float partialTick, ClientLevel level, GuiGraphics guiGraphics, int width, int height){
         if (Arrays.asList(BackGroundUtil.panoramaExcludeScreen).contains(screen.getClass())) return;
         if (level == null){
             panoramaRenderer.render(partialTick, 1.0f);
         }
         if (!(screen instanceof TitleScreen)){
-//            BackGroundUtil.renderMenuBackground(guiGraphics, screen);
+            BackGroundUtil.renderMenuBackground(guiGraphics, screen);
 //            BackGroundUtil.renderBlurredBackground(getMinecraft().getPartialTick());
         }
     }

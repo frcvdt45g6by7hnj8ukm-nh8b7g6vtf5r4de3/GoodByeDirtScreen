@@ -6,13 +6,12 @@
   "mixins": [
   ],
   "client": [
-    "AbstractSelectionListMixin",
+    "layout.AbstractSelectionListMixin",
     "background.BackgroundMixin",
-    "background.EditGameRulesScreenMixin",
+    "background.ExperimentsScreenMixin",
     "background.ScreenMixin",
     "background.TitleScreenMixin",
     "layout.CreateWorldScreeMixin",
-    "layout.ExperimentsScreenMixin",
     "layout.ScrollPanelMixin",
     "layout.TabButtonMixin",
     "layout.TabNavigationBarMixin"

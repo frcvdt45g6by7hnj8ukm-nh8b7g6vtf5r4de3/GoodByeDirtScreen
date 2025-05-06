@@ -1,5 +1,6 @@
 package com.kaleblangley.goodbyedirtscreen.mixin.layout;
 
+import com.kaleblangley.goodbyedirtscreen.util.EventUtil;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -14,9 +15,15 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(TabButton.class)
 public abstract class TabButtonMixin {
-    @Shadow @Final private static ResourceLocation TEXTURE_LOCATION;
+    @Shadow
+    @Final
+    private static ResourceLocation TEXTURE_LOCATION;
 
-    @Shadow protected abstract int getTextureY();
+    @Shadow
+    protected abstract int getTextureY();
+
+    @Shadow
+    public abstract boolean isSelected();
 
     @WrapOperation(method = "renderWidget", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitNineSliced(Lnet/minecraft/resources/ResourceLocation;IIIIIIIIIIII)V"))
     public void blendTab(GuiGraphics guiGraphics, ResourceLocation atlasLocation, int x, int y, int width, int height, int leftSliceWidth, int topSliceHeight, int rightSliceWidth, int bottomSliceHeight, int uWidth, int vHeight, int textureX, int textureY, Operation<Void> original) {
@@ -25,5 +32,9 @@ public abstract class TabButtonMixin {
         RenderSystem.enableBlend();
         guiGraphics.blitNineSliced(TEXTURE_LOCATION, widget.getX(), widget.getY(), widget.getWidth(), widget.getHeight(), 2, 2, 2, 0, 130, 24, 0, this.getTextureY());
         RenderSystem.disableBlend();
+
+        if (this.isSelected()) {
+            EventUtil.postMenuList(guiGraphics, widget.getX() + 2, widget.getY() + 2, widget.getWidth() - 4, widget.getHeight() - 2);
+        }
     }
 }
