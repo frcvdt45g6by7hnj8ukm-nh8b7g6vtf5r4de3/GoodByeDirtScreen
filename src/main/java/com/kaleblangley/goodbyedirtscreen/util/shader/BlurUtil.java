@@ -3,8 +3,9 @@ package com.kaleblangley.goodbyedirtscreen.util.shader;
 import net.minecraft.client.renderer.PostChain;
 import net.minecraft.resources.ResourceLocation;
 
-import static com.kaleblangley.goodbyedirtscreen.util.shader.EffectUtil.*;
-import static com.kaleblangley.goodbyedirtscreen.util.MinecraftUtil.*;
+import static com.kaleblangley.goodbyedirtscreen.util.MinecraftUtil.getWindow;
+import static com.kaleblangley.goodbyedirtscreen.util.shader.EffectUtil.getPostChain;
+import static com.kaleblangley.goodbyedirtscreen.util.shader.EffectUtil.setUniform;
 
 public class BlurUtil {
     public static PostChain blurEffect;

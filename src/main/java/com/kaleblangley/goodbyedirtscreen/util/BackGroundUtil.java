@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.Arrays;
 
-import static com.kaleblangley.goodbyedirtscreen.util.MinecraftUtil.*;
+import static com.kaleblangley.goodbyedirtscreen.util.MinecraftUtil.getMainRenderTarget;
 
 
 public class BackGroundUtil {
@@ -26,7 +26,7 @@ public class BackGroundUtil {
             panoramaRenderer.render(partialTick, 1.0f);
         }
         if (!(screen instanceof TitleScreen)){
-            BackGroundUtil.renderMenuBackground(guiGraphics, screen);
+//            BackGroundUtil.renderMenuBackground(guiGraphics, screen);
 //            BackGroundUtil.renderBlurredBackground(getMinecraft().getPartialTick());
         }
     }

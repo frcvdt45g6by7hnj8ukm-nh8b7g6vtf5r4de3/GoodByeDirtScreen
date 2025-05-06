@@ -6,7 +6,16 @@
   "mixins": [
   ],
   "client": [
-    "AbstractSelectionListMixin"
+    "AbstractSelectionListMixin",
+    "background.BackgroundMixin",
+    "background.EditGameRulesScreenMixin",
+    "background.ScreenMixin",
+    "background.TitleScreenMixin",
+    "layout.CreateWorldScreeMixin",
+    "layout.ExperimentsScreenMixin",
+    "layout.ScrollPanelMixin",
+    "layout.TabButtonMixin",
+    "layout.TabNavigationBarMixin"
   ],
   "injectors": {
     "defaultRequire": 1
