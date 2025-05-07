@@ -1,4 +1,4 @@
-package com.kaleblangley.goodbyedirtscreen.mixin.background;
+package com.kaleblangley.goodbyedirtscreen.mixin.layout;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;

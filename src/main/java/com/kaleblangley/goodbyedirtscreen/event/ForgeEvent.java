@@ -2,11 +2,10 @@ package com.kaleblangley.goodbyedirtscreen.event;
 
 import com.kaleblangley.goodbyedirtscreen.GoodByeDirtScreen;
 import com.kaleblangley.goodbyedirtscreen.api.event.DirtScreen;
-import com.kaleblangley.goodbyedirtscreen.util.BackGroundUtil;
+import com.kaleblangley.goodbyedirtscreen.util.render.BackGroundUtil;
 import com.kaleblangley.goodbyedirtscreen.util.ResourceUtil;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
