@@ -58,14 +58,19 @@ repositories {
     maven { url = "https://maven.theillusivec4.top/" }
     maven { url "https://maven.shedaniel.me/" }
     maven { url 'https://jitpack.io' }
+    maven { url "https://cursemaven.com" }
 }
 
 dependencies {
     compileOnly 'org.jetbrains:annotations:24.0.1'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
+//    modRuntimeOnly "curse.maven:fancymenu-367706:6785137"
+//    modRuntimeOnly "curse.maven:konkrete-410295:5028413"
+//    modRuntimeOnly "curse.maven:melody-938643:5109692"
+
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0-rc.2"))
-    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.0-rc.2"))
+    modImplementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.0-rc.2"))
 }
 
 mixin {

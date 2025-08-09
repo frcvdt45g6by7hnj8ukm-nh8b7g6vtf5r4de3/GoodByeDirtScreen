@@ -20,7 +20,7 @@ public class ForgeEvent {
     public static void backgroundRender(DirtScreen.BackGroundEvent event) {
         Screen currentScreen = event.getScreen();
         GuiGraphics guiGraphics = event.getGuiGraphics();
-        BackGroundUtil.applyPanorama(currentScreen, getPartialTick(), getMinecraft().level, guiGraphics, currentScreen.width, currentScreen.height);
+        BackGroundUtil.applyPanorama(currentScreen, getPartialTick(), guiGraphics, currentScreen.width, currentScreen.height);
     }
 
     @SubscribeEvent

@@ -2,6 +2,8 @@ package com.kaleblangley.goodbyedirtscreen;
 
 import net.minecraft.client.gui.screens.GenericDirtMessageScreen;
 import net.minecraft.client.gui.screens.LevelLoadingScreen;
+import net.minecraft.client.gui.screens.PauseScreen;
+import net.minecraft.client.gui.screens.telemetry.TelemetryInfoScreen;
 import net.minecraftforge.common.ForgeConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -32,14 +34,20 @@ public class GoodByeDirtScreen {
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> ALLOW_SCREEN_LIST = BUILDER
             .comment("Always add a screen list for panoramic background (enter the screen class name)")
             .comment("始终添加全景图背景的屏幕列表（输入屏幕类名）")
-            .defineList("allow screen list", List.of(GenericDirtMessageScreen.class.getName(), LevelLoadingScreen.class.getName()), str -> true);
+            .defineList("allow screen list",
+                    List.of(
+                            GenericDirtMessageScreen.class.getName(),
+                            LevelLoadingScreen.class.getName(),
+                            TelemetryInfoScreen.class.getName()
+                    ),
+                    str -> true);
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> EXCLUDE_SCREEN_LIST = BUILDER
             .comment("Always exclude the screen list of panoramic background (enter the screen class name)")
             .comment("始终拒绝全景图背景的屏幕列表（输入屏幕类名）")
             .defineList("exclude screen list", List.of(), str -> true);
     private static final ForgeConfigSpec SPEC = BUILDER.build();
 
-    public GoodByeDirtScreen(){
+    public GoodByeDirtScreen() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SPEC);
     }
 }

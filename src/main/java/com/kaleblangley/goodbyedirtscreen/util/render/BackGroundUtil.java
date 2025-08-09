@@ -27,39 +27,40 @@ public class BackGroundUtil {
     private static float cacheFrame = -1f;
     private static Screen cacheScreen = null;
 
-    public static void applyPanorama(Screen screen, float partialTick, ClientLevel level, GuiGraphics guiGraphics, int width, int height) {
+    public static void applyPanorama(Screen screen, float partialTick, GuiGraphics guiGraphics, int width, int height) {
         if (!allowScreen(screen) && (updateCache(screen) || excludeScreen(screen))) return;
 
 //        FBOUtil.initBackgroundFBO(width, height);
 //        FBOUtil.backgroundFBOWrite(false);
 //        getMainRenderTarget().unbindWrite();
 
-        if (level == null || allowScreen(screen)) {
+        if (getMinecraft().level == null || allowScreen(screen)) {
             panoramaRenderer.render(partialTick, 1.0f);
             RenderSystem.enableBlend();
             guiGraphics.blit(PANORAMA_OVERLAY, 0, 0, width, height, 0.0F, 0.0F, 16, 128, 16, 128);
             RenderSystem.disableBlend();
         }
+
         if (!(screen instanceof TitleScreen)) {
-//            BackGroundUtil.renderBlurredBackground(getMinecraft().getPartialTick());
             BackGroundUtil.renderMenuBackground(guiGraphics, screen);
+//            BackGroundUtil.renderBlurredBackground(getMinecraft().getPartialTick());
         }
     }
 
     private static boolean updateCache(Screen screen) {
         if (cacheFrame == getPartialTick() && cacheScreen == screen) {
-            cacheFrame = getPartialTick();
-            cacheScreen = screen;
             return true;
         }
+        cacheFrame = getPartialTick();
+        cacheScreen = screen;
         return false;
     }
 
-    private static boolean allowScreen(Screen screen) {
-        return EXCLUDE_SCREEN_LIST.get().contains(screen.getClass().getName());
+    public static boolean allowScreen(Screen screen) {
+        return ALLOW_SCREEN_LIST.get().contains(screen.getClass().getName());
     }
 
-    private static boolean excludeScreen(Screen screen) {
+    public static boolean excludeScreen(Screen screen) {
         return EXCLUDE_SCREEN_LIST.get().contains(screen.getClass().getName());
     }
 

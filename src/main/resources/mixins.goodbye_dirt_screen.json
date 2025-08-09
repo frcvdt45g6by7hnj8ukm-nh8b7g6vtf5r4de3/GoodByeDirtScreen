@@ -4,6 +4,7 @@
   "package": "com.kaleblangley.goodbyedirtscreen.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "TelemetryInfoScreenMixin"
   ],
   "client": [
     "background.BackgroundMixin",
