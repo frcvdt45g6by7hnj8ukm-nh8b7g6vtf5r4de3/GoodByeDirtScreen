@@ -1,5 +1,6 @@
 package com.kaleblangley.goodbyedirtscreen;
 
+import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.gui.screens.GenericDirtMessageScreen;
 import net.minecraft.client.gui.screens.LevelLoadingScreen;
 import net.minecraft.client.gui.screens.PauseScreen;
@@ -17,8 +18,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 
-@Mod(GoodByeDirtScreen.MODID)
-public class GoodByeDirtScreen {
+public class GoodByeDirtScreen implements ClientModInitializer {
     public static final String MODID = "goodbye_dirt_screen";
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
@@ -47,7 +47,8 @@ public class GoodByeDirtScreen {
             .defineList("exclude screen list", List.of(), str -> true);
     private static final ForgeConfigSpec SPEC = BUILDER.build();
 
-    public GoodByeDirtScreen() {
+    @Override
+    public void onInitializeClient() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SPEC);
     }
 }

@@ -2,9 +2,8 @@ package com.kaleblangley.goodbyedirtscreen.api.event;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraftforge.eventbus.api.Event;
 
-public class DirtScreen extends Event {
+public class DirtScreen {
     private final GuiGraphics guiGraphics;
 
     public DirtScreen(GuiGraphics guiGraphics) {

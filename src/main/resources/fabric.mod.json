@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "goodbye_dirt_screen",
+  "version": "${version}",
+  "name": "Goodbye Dirt Screen",
+  "description": "This is a simple mod that brings the updated panorama background introduced in Minecraft 1.20.5 to lower versions of the game.",
+  "authors": [
+    "Kaleb Langley"
+  ],
+  "contact": {
+    "sources": "https://github.com/frcvdt45g6by7hnj8ukm-nh8b7g6vtf5r4de3/GoodByeDirtScreen"
+  },
+  "accessWidener": "goodbye_dirt_screen.accesswidener",
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.kaleblangley.goodbyedirtscreen.GoodByeDirtScreen"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "mixins.goodbye_dirt_screen.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.17.2",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

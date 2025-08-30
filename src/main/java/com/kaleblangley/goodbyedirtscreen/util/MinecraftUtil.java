@@ -33,6 +33,6 @@ public class MinecraftUtil {
     }
 
     public static float getPartialTick(){
-        return getMinecraft().getPartialTick();
+        return getMinecraft().isPaused() ? getMinecraft().pausePartialTick : getMinecraft().getFrameTime();
     }
 }
