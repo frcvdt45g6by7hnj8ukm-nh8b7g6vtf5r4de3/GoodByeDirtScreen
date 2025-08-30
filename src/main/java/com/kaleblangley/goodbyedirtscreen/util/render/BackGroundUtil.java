@@ -1,5 +1,6 @@
 package com.kaleblangley.goodbyedirtscreen.util.render;
 
+import com.kaleblangley.goodbyedirtscreen.Config;
 import com.kaleblangley.goodbyedirtscreen.GoodByeDirtScreen;
 import com.kaleblangley.goodbyedirtscreen.util.ResourceUtil;
 import com.kaleblangley.goodbyedirtscreen.util.shader.BlurUtil;
@@ -57,22 +58,22 @@ public class BackGroundUtil {
     }
 
     public static boolean allowScreen(Screen screen) {
-        return ALLOW_SCREEN_LIST.get().contains(screen.getClass().getName());
+        return Config.getInstance().allowScreenList.contains(screen.getClass().getName());
     }
 
     public static boolean excludeScreen(Screen screen) {
-        return EXCLUDE_SCREEN_LIST.get().contains(screen.getClass().getName());
+        return Config.getInstance().excludeScreenList.contains(screen.getClass().getName());
     }
 
     //TODO 模糊的应用
     public static void renderBlurredBackground(float pPartialTick) {
-        if (!GoodByeDirtScreen.ENABLE_BLUR_EFFECTS.get()) return;
+        if (!Config.getInstance().blur) return;
         BlurUtil.loadBlurEffect();
         BlurUtil.processBlurEffect(pPartialTick);
     }
 
     public static void renderMenuBackground(GuiGraphics guiGraphics, Screen screen) {
-        if (!GoodByeDirtScreen.ENABLE_DARKENING_EFFECTS.get()) return;
+        if (!Config.getInstance().darkening) return;
         RenderSystem.enableBlend();
         guiGraphics.blit(ResourceUtil.MENU_BACKGROUND, 0, 0, 0, 0, 0, screen.width, screen.height, 32, 32);
         RenderSystem.disableBlend();
