@@ -7,13 +7,13 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 
-import static com.kaleblangley.goodbyedirtscreen.util.MinecraftUtil.getPartialTick;
+import static com.kaleblangley.goodbyedirtscreen.util.MinecraftUtil.getMinecraft;
 
 public class EventImpl {
     public static void backgroundRender(DirtScreen.BackGroundEvent event) {
         Screen currentScreen = event.getScreen();
         GuiGraphics guiGraphics = event.getGuiGraphics();
-        BackGroundUtil.applyPanorama(currentScreen, getPartialTick(), guiGraphics, currentScreen.width, currentScreen.height);
+        BackGroundUtil.applyPanorama(currentScreen, getMinecraft().getDeltaFrameTime(), guiGraphics, currentScreen.width, currentScreen.height);
     }
 
     public static void footerRender(DirtScreen.LayoutEvent.Footer event){

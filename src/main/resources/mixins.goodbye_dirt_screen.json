@@ -9,7 +9,7 @@
     "TelemetryInfoScreenMixin",
     "background.BackgroundMixin",
     "background.ScreenMixin",
-    "background.TitleScreenMixin",
+    "background.GameRendererMixin",
     "layout.AbstractSelectionListMixin",
     "layout.CreateWorldScreeMixin",
     "layout.ExperimentsScreenMixin",

@@ -2,6 +2,7 @@ package com.kaleblangley.goodbyedirtscreen;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screens.GenericDirtMessageScreen;
 import net.minecraft.client.gui.screens.LevelLoadingScreen;
@@ -39,11 +40,14 @@ public class Config {
             if (Files.exists(CONFIG_PATH)) {
                 String json = Files.readString(CONFIG_PATH);
                 instance = GSON.fromJson(json, Config.class);
+                if (instance == null) instance = new Config();
+                if (instance.allowScreenList == null) instance.allowScreenList = new Config().allowScreenList;
+                if (instance.excludeScreenList == null) instance.excludeScreenList = List.of();
             } else {
                 instance = new Config();
                 save();
             }
-        } catch (IOException e) {
+        } catch (IOException | JsonParseException e) {
             GoodByeDirtScreen.LOGGER.error("Failed to load config", e);
             instance = new Config();
         }

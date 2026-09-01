@@ -12,6 +12,9 @@ base {
 
 loom {
     accessWidenerPath = file("src/main/resources/${archives_base_name}.accesswidener")
+    mixin {
+        defaultRefmapName = 'goodbye_dirt_screen.refmap.json'
+    }
 }
 
 repositories {
@@ -79,4 +82,30 @@ publishing {
         // The repositories here will be used for publishing your artifact, not for
         // retrieving dependencies.
     }
+}
+
+tasks.register('verifyMixinRefmaps') {
+    dependsOn tasks.named('remapJar')
+    doLast {
+        def modJar = tasks.named('remapJar').get().archiveFile.get().asFile
+        new java.util.zip.ZipFile(modJar).withCloseable { zip ->
+            def json = new groovy.json.JsonSlurper()
+            def metadata = json.parse(zip.getInputStream(zip.getEntry('fabric.mod.json')))
+            metadata.mixins.each { declaration ->
+                def configName = declaration instanceof String ? declaration : declaration.config
+                def config = json.parse(zip.getInputStream(zip.getEntry(configName)))
+                def entry = config.refmap ? zip.getEntry(config.refmap) : null
+                if (entry == null) {
+                    throw new GradleException("Missing refmap '${config.refmap}' declared by ${configName}")
+                }
+                if (!json.parse(zip.getInputStream(entry)).mappings) {
+                    throw new GradleException("Empty refmap '${config.refmap}' in ${modJar.name}")
+                }
+            }
+        }
+    }
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('verifyMixinRefmaps')
 }
