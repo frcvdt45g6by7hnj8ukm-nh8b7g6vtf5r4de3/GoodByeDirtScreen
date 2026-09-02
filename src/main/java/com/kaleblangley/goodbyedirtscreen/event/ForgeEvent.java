@@ -12,7 +12,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import static com.kaleblangley.goodbyedirtscreen.util.MinecraftUtil.getMinecraft;
-import static com.kaleblangley.goodbyedirtscreen.util.MinecraftUtil.getPartialTick;
 
 @Mod.EventBusSubscriber(modid = GoodByeDirtScreen.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ForgeEvent {
@@ -20,7 +19,7 @@ public class ForgeEvent {
     public static void backgroundRender(DirtScreen.BackGroundEvent event) {
         Screen currentScreen = event.getScreen();
         GuiGraphics guiGraphics = event.getGuiGraphics();
-        BackGroundUtil.applyPanorama(currentScreen, getPartialTick(), guiGraphics, currentScreen.width, currentScreen.height);
+        BackGroundUtil.applyPanorama(currentScreen, getMinecraft().getDeltaFrameTime(), guiGraphics, currentScreen.width, currentScreen.height);
     }
 
     @SubscribeEvent

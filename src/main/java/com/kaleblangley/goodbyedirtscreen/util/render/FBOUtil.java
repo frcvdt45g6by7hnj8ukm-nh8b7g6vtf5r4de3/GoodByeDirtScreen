@@ -7,11 +7,19 @@ public class FBOUtil {
     private static RenderTarget backgroundFBO = null;
 
     public static void initBackgroundFBO(int width, int height){
-        if (backgroundFBO == null || backgroundFBO.width != width || backgroundFBO.height != height) {
-            if (backgroundFBO != null) backgroundFBO.clear(Minecraft.ON_OSX);
+        if (backgroundFBO == null) {
             backgroundFBO = new RenderTarget(true) {
             };
+        }
+        if (backgroundFBO.width != width || backgroundFBO.height != height) {
             backgroundFBO.resize(width, height, Minecraft.ON_OSX);
+        }
+    }
+
+    public static void close() {
+        if (backgroundFBO != null) {
+            backgroundFBO.destroyBuffers();
+            backgroundFBO = null;
         }
     }
 

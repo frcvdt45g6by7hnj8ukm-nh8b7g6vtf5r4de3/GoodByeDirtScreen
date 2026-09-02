@@ -4,16 +4,16 @@
   "package": "com.kaleblangley.goodbyedirtscreen.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "TelemetryInfoScreenMixin"
   ],
   "client": [
+    "MinecraftMixin",
+    "TelemetryInfoScreenMixin",
     "background.BackgroundMixin",
     "background.ScreenMixin",
-    "background.TitleScreenMixin",
+    "background.GameRendererMixin",
     "layout.AbstractSelectionListMixin",
     "layout.CreateWorldScreeMixin",
     "layout.ExperimentsScreenMixin",
-    "layout.ScrollPanelMixin",
     "layout.TabButtonMixin",
     "layout.TabNavigationBarMixin"
   ],

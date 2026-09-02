@@ -1,6 +1,6 @@
 plugins {
     id 'idea'
-    id 'net.neoforged.moddev.legacyforge' version '2.0.78'
+    id 'net.neoforged.moddev.legacyforge' version '2.0.146'
 }
 
 group = mod_group_id
@@ -14,7 +14,10 @@ java {
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 legacyForge {
-    version = "${minecraft_version}-${forge_version}"
+    enable {
+        forgeVersion = "${minecraft_version}-${forge_version}"
+        disableRecompilation = true
+    }
 
     if (Boolean.getBoolean(enableAccessTransformers)) {
         accessTransformers = [file('src/main/resources/META-INF/accesstransformer.cfg')]
@@ -92,7 +95,7 @@ processResources {
     inputs.properties replaceProperties
 
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
-        expand replaceProperties + [project: project]
+        expand replaceProperties
     }
 }
 
